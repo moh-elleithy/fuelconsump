@@ -1,4 +1,4 @@
-package com.fuelconsumption.controllersTest;
+package com.fuelconsumption.controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,21 +7,30 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fuelconsumption.business.services.FuelConsumptionService;
 import com.fuelconsumption.controllers.FuelConsumptionsController;
 import com.fuelconsumption.model.entities.FuelConsumptionEntity;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(FuelConsumptionsController.class)
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class FuelConsumptionControllerTest {
 	
 	@MockBean
@@ -47,7 +56,7 @@ public class FuelConsumptionControllerTest {
 		mockFuelConsumptionsList.add(mockFuelConsumptionEntity);
 		
 		given(fuelConsumptionService.getAllFuels()).willReturn(mockFuelConsumptionsList);
-		this.mockMvc.perform(get("/FuelConsumptions/allFuels")).andExpect(status().isOk());
+		this.mockMvc.perform(get("/FuelConsumptions/getAllFuels")).andExpect(status().isOk()).andExpect(content().string(containsString("Super")));
 		
 	}
 	
