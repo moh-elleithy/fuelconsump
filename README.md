@@ -5,7 +5,7 @@ Java 8 streams and lambda, Spring Boot, H2 embedded database, maven,  REST webse
 
 API :
 
--Post a New Fuel :
+- Post a New Fuel :
 http://localhost:8080/FuelConsumptions/addFuel
 Content-Type : application/json >>> Body >>> Raw >>> JSON
 {
@@ -16,14 +16,14 @@ Content-Type : application/json >>> Body >>> Raw >>> JSON
 	"volume" : "25"
 }
 
--Get All Fuels :
+- Get All Fuels :
 http://localhost:8080/FuelConsumptions/getAllFuels
 
--Post a bulk of Fuels:
+- Post a bulk of Fuels:
 http://localhost:8080/FuelConsumptions/addFuelBulk
 params : list of JSON objects which Spring REST will maps to FuelConsumptionEntity objects
 
--Put (update) an excist fuel :
+- Put (update) an excist fuel :
 http://localhost:8080/FuelConsumptions/updateFuel
 param : JSON object of the fuel
 
